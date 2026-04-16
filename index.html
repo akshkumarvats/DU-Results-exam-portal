@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University of Delhi - Result Portal</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 0; background-color: #ffffff; font-size: 12px; }
+        
+        /* HEADER STYLES */
+        .header-bg { background-color: #5c5cff; color: white; padding: 10px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .logo-placeholder { position: absolute; left: 10px; width: 60px; height: 60px; background-color: white; border-radius: 50%; border: 2px solid #ccc; display: flex; justify-content: center; align-items: center; color: black; font-size: 10px; text-align: center; }
+        .header-text { text-align: center; }
+        .header-text h1 { margin: 0; font-size: 20px; font-weight: normal; }
+        .header-text p { margin: 5px 0 0 0; font-size: 12px; }
+        
+        /* NAVBAR STYLES */
+        .navbar { background-color: #f5eedb; border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; padding: 5px 10px; display: flex; gap: 15px; font-size: 11px; }
+        .nav-item { border-left: 3px solid #ccc; padding-left: 5px; cursor: pointer;}
+        .nav-item:hover { color: #0000cc;}
+
+        /* MAIN CONTENT STYLES */
+        .content { padding: 20px; max-width: 800px; margin: 0 auto; }
+        .title-red { color: #cc0000; text-align: center; font-size: 16px; font-weight: bold; margin-bottom: 5px; }
+        .subtitle-red { color: #cc0000; text-align: center; font-size: 12px; font-weight: bold; margin-bottom: 10px; }
+        .notice-pink { color: #cc0066; text-align: center; font-weight: bold; font-size: 11px; border-top: 2px solid #0099cc; border-bottom: 2px solid #0099cc; padding: 5px 0; margin-bottom: 20px; }
+        
+        /* FORM STYLES */
+        .form-table { width: 100%; max-width: 600px; margin: 0 auto; border-spacing: 10px; }
+        .form-table td { vertical-align: middle; }
+        .label-cell { font-weight: bold; color: #333; width: 40%; }
+        .req { color: red; }
+        input[type="text"], select { width: 250px; padding: 3px; border: 1px solid #a9a9a9; font-size: 11px; }
+        .dob-select { width: 60px !important; }
+        .search-btn { background-color: #1a6b6b; color: white; border: 1px solid #0d4242; padding: 5px 15px; font-weight: bold; cursor: pointer; margin-top: 5px; font-size: 11px; }
+        
+        /* FOOTER & NOTES */
+        .notes { font-size: 11px; margin-top: 40px; color: #0000cc; font-weight: bold; }
+        .footer { background-color: #5c5cff; color: white; text-align: center; padding: 5px; font-size: 11px; margin-top: 20px; }
+        .footer-orange { background-color: #ffcc66; color: #0000cc; text-align: center; padding: 3px; font-size: 11px; font-weight: bold; }
+
+        /* ========================================================== */
+        /* ==================== SCORECARD PAGE STYLES ==================== */
+        /* ========================================================== */
+        #scorecard-page { display: none; background-color: #666; padding: 50px 0; font-family: "Times New Roman", Times, serif;}
+        .marksheet-wrapper { background: #fff; width: 750px; margin: 0 auto; padding: 20px; border: 1px solid #999; box-shadow: 0 0 10px rgba(0,0,0,0.5); font-size: 11px;}
+        .ms-header { border-bottom: 2px solid #0099cc; padding-bottom: 10px; margin-bottom: 10px; text-align: center; }
+        .ms-header h1 { margin: 0; font-size: 18px; }
+        .ms-header h2 { margin: 5px 0 0 0; color: #cc0000; font-size: 14px; }
+        .ms-header h3 { margin: 5px 0 0 0; color: #0000cc; font-size: 12px; text-decoration: underline; font-weight: normal; }
+        
+        .student-info-box { border: 1px solid #000; padding: 10px; margin-bottom: 10px; line-height: 1.6;}
+        .info-row { display: flex; }
+        .info-label { width: 140px; font-weight: bold; color: #cc0000; font-size: 11px; }
+        .info-value { flex: 1; font-weight: bold; font-size: 11px;}
+        .printing-date { color: #cc0000; text-align: right; font-weight: bold; }
+
+        .marks-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 10px; }
+        .marks-table th, .marks-table td { border: 1px solid #000; padding: 5px; text-align: center; }
+        .marks-table th { background-color: #e4e4e4; font-weight: bold; }
+        
+        .marks-summary { font-weight: bold; border-top: 2px solid #000; border-bottom: 2px solid #000; padding: 5px 0;}
+        
+        .passing-criteria { font-weight: bold; margin-top: 15px; margin-bottom: 15px;}
+        .note-section { color: #333; font-weight: bold;}
+        .ms-footer { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 10px; border-top: 2px solid #0099cc; padding-top: 10px;}
+        .signature-area { width: 200px; text-align: center; font-size: 10px;}
+        
+        .scissors-section { width: 750px; margin: 10px auto; color: #666; font-size: 14px; text-align: center;}
+        .disclaimer-section { background-color: #fff; width: 730px; margin: 0 auto; border: 1px solid #ccc; padding: 10px; font-size: 10px; line-height: 1.4;}
+        .disclaimer-title { text-align: center; font-weight: bold; text-decoration: underline; margin-bottom: 10px;}
+        
+        .action-buttons { text-align: center; margin-top: 15px;}
+        .action-btn { background-color: #fff; border: 1px solid #ccc; padding: 5px 15px; font-size: 10px; font-weight: bold; cursor: pointer; color: black; margin: 0 5px; border-radius: 20px;}
+        .action-btn.print { color: #0000cc; border-color: #ccc; }
+        
+    </style>
+</head>
+<body>
+
+    <div id="login-page">
+        <div class="header-bg">
+            <div class="logo-placeholder">DU Logo</div>
+            <div class="header-text">
+                <h1>University of Delhi</h1>
+                <p>Manual Results (Semester/Annual Examination)</p>
+            </div>
+        </div>
+
+        <div class="navbar">
+            <div class="nav-item">Home</div>
+            <div class="nav-item">Statement of Marks</div>
+            <div class="nav-item">List of Declared Result</div>
+        </div>
+
+        <div class="content">
+            <div class="title-red">Semester/Annual Examination Results</div>
+            <div class="subtitle-red">Statement of Marks/Score Card</div>
+            
+            <div class="notice-pink">
+                Students are advised to save their Statement of Marks/Score Card for future purpose.<br>
+                This link will not be available later.
+            </div>
+
+            <table class="form-table">
+                <tr>
+                    <td class="label-cell">College/Department Name <span class="req">*</span></td>
+                    <td>
+                        <select id="collegeName">
+                            <option>&lt;-----Select-----&gt;</option>
+                            <option value="ILC, Faculty of Law">ILC, Faculty of law</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Exam Roll No. <span class="req">*</span></td>
+                    <td><input type="text" id="examRoll" placeholder="e.g., 25350920007"></td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Student Name <span class="req">*</span></td>
+                    <td><input type="text" id="studentName"></td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Email Id (As per Exam Form) <span class="req">*</span></td>
+                    <td><input type="text" id="studentEmail"></td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Date of Birth <span class="req">*</span></td>
+                    <td>
+                        DD <select id="dob_dd" class="dob-select">
+                            <option>DD</option>
+                            <option value="19">19</option>
+                        </select>
+                        MM <select id="dob_mm" class="dob-select">
+                            <option>MM</option>
+                            <option value="08">08</option>
+                        </select>
+                        YYYY <select id="dob_yyyy" class="dob-select">
+                            <option>YYYY</option>
+                            <option value="2006">2006</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button class="search-btn" onclick="searchDetails()">Search Details</button></td>
+                </tr>
+            </table>
+
+            <div class="notes">
+                <span style="color: red;">* Mandatory Fields</span><br><br>
+                Note 1 : <span style="font-weight: normal;">For any query related to results, students are advised to contact window no.7 of examination branch North Campus on any working day between 9.00am to 3.30pm.</span><br><br>
+                Note 2 : <span style="font-weight: normal; text-decoration: underline;">In case of any discrepancy in the email ID, date of birth, or other basic details, students may contact the marksheet section of the examination branch.</span>
+            </div>
+        </div>
+
+        <div class="footer">University of Delhi (Compatible Browser: mozilla firefox)</div>
+        <div class="footer-orange">(For any query related to results, students are advised to contact window no.7 of examination branch North Campus on any working day between 9.00am to 3.30pm.)</div>
+    </div>
+
+    <div id="scorecard-page">
+        <div class="marksheet-wrapper">
+            <div class="ms-header">
+                <h1>University of Delhi</h1>
+                <h2>Semester Examination Nov-Dec 2025</h2>
+                <h3>Statement of Marks</h3>
+            </div>
+
+            <div class="student-info-box">
+                <div class="info-row"><div class="info-label">Exam Roll No.</div>: <div class="info-value">25350920007</div></div>
+                <div class="info-row"><div class="info-label">Name</div>: <div class="info-value">Aksh kumar vats</div></div>
+                <div class="info-row"><div class="info-label">Father's Name</div>: <div class="info-value">ONKAR MISHRA</div></div>
+                <div class="info-row"><div class="info-label">Course Name</div>: <div class="info-value">Five Year Integrated B.B.A. LL.B.(Hons.)</div></div>
+                <div class="info-row"><div class="info-label">Exam Term</div>: <div class="info-value">I</div></div>
+                <div class="info-row"><div class="info-label">Centre Name</div>: <div class="info-value">ILC, Faculty of Law</div></div>
+                <div class="info-row"><div class="info-label">Enrollment No.</div>: <div class="info-value">Nil</div></div>
+                <div class="info-row"><div class="info-label">Month of Exam</div>: <div class="info-value">DECEMBER</div></div>
+                <div class="printing-date">Date of Printing: 16 Apr 2026</div>
+            </div>
+
+            <table class="marks-table">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Paper Code</th>
+                        <th>Paper Name</th>
+                        <th>Term</th>
+                        <th>Marks (Obt/Max)</th>
+                        <th>Paper Result</th>
+                    }
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>626231101</td><td>LAW OF CONTRACT</td><td>I</td><td>87/100</td><td>P</td></tr>
+                    <tr><td>2</td><td>626231102</td><td>INTRODUCTION TO LAW AND LEGAL SYSTEMS</td><td>I</td><td>89/100</td><td>P</td></tr>
+                    <tr><td>3</td><td>626231103</td><td>STRUCTURE OF ENGLISH LANGUAGE - I</td><td>I</td><td>91/100</td><td>P</td></tr>
+                    <tr><td>4</td><td>626231107</td><td>BUSINESS ACCOUNTING</td><td>I</td><td>67/100</td><td>P</td></tr>
+                    <tr><td>5</td><td>626231108</td><td>STATISTICS FOR BUSINESS DECISIONS</td><td>I</td><td>69/100</td><td>P</td></tr>
+                    <tr><td>6</td><td>626231109</td><td>FUNDAMENTALS OF MANAGEMENT</td><td>I</td><td>81/100</td><td>P</td></tr>
+                </tbody>
+            </table>
+
+            <div class="marks-summary" style="display: flex;">
+                <div style="width: 15%; text-align: center;">Term<br>I</div>
+                <div style="width: 15%; text-align: center;">Total Obtained Marks<br>484</div>
+                <div style="width: 15%; text-align: center;">Max Total Marks<br>600</div>
+                <div style="width: 55%; font-size: 10px;">Result Status / Passed in Papers<br>626231101,626231102,626231103,626231107,626231108,626231109</div>
+            </div>
+
+            <div class="passing-criteria">Passing Criteria: <span style="font-weight: normal;">To pass the B.A. LL.B.(Hons.) and B.B.A. LL.B.(Hons.) program, a candidate needs to score at least 45% in each paper.</span></div>
+            <div style="font-weight: bold;">Abbreviations: <span style="font-weight: normal;">RL: Result will be declared later, if necessary; ER: Essential Repeat; TH: Theory; PR: Practical Exam; IA: Internal Assessment; P: Passed in Paper; F: Failed in Paper; AB: Absent in Paper; *: Old Awards; NA: Not Available;</span></div>
+            
+            <br>
+            <div class="note-section">
+                Note: <span style="font-weight: normal;">
+                [1] This is a web-based Statement of Marks/Grades.<br>
+                [2] Student has to pass all the ER to become eligible for the award of the degree as per the examination cycle and span period.<br>
+                [3] The information provided in this statement of marks may be checked by the student for any discrepancies. It is further advised to ensure that all the information provided here is correct. For corrections if any, please contact the Director of the Faculty.<br>
+                [4] In case of any discrepancy, student should immediately contact the Director of the Faculty within one month of the declaration of the result.<br>
+                [5] The result displayed on the University website is subject to correction, if any discrepancy is noticed at any point of time.</span>
+            </div>
+
+            <div class="ms-footer">
+                <div style="font-weight: bold;">Date of Result Declaration: 15/04/2026</div>
+                <div class="signature-area">
+                    <br><br>
+                    (Prof. Gurpreet Singh Tuteja)<br>
+                    Controller of Examination
+                </div>
+            </div>
+        </div>
+
+        <div class="scissors-section">✂-----------------------------------------------------------✂</div>
+        
+        <div class="disclaimer-section">
+            <div class="disclaimer-title">Disclaimer:</div>
+            [1] The University shall not be held liable for any errors, discrepancies, or omissions in the information provided in the statement of Marks.<br>
+            [2] In case of any discrepancies or concerns, the student is responsible for notifying the Director of the Faculty within the prescribed time frame.<br>
+            [3] The University shall not be responsible for any claims, damages, or consequences arising out of the information presented in the Statement of Marks.<br>
+            [4] This document is issued with the understanding that it may be subject to further verification, correction, or revision by the University, and the student is advised to regularly check the updates.
+        </div>
+        
+        <div class="action-buttons">
+            <button class="action-btn print">PRINT</button>
+            <button class="action-btn">CLOSE</button>
+        </div>
+    </div>
+
+    <script>
+        function searchDetails() {
+            // Get what the user typed in from the specific input fields
+            const enteredRoll = document.getElementById('examRoll').value;
+            const college = document.getElementById('collegeName').value;
+            const name = document.getElementById('studentName').value;
+            const email = document.getElementById('studentEmail').value;
+            const dob_d = document.getElementById('dob_dd').value;
+            const dob_m = document.getElementById('dob_mm').value;
+            const dob_y = document.getElementById('dob_yyyy').value;
+
+            // --- THE SECRET CHECK ---
+            // Your target roll number from the scorecard: 25350920007
+            const targetRollNumber = "25350920007"; 
+
+            if (enteredRoll === targetRollNumber) {
+                // If it matches, show your perfect scorecard!
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('scorecard-page').style.display = 'block';
+            } else {
+                // If it does NOT match, show a fake database error
+                alert("Sorry! No record found for Roll Number: " + enteredRoll + ". Please check your details (and mandatory fields) and try again.");
+            }
+        }
+    </script>
+
+</body>
+</html>
