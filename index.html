@@ -11,9 +11,8 @@
         /* ==================== LOGIN/SEARCH PAGE ==================== */
         .header-bg { background-color: #5c5cff; color: white; padding: 10px; display: flex; align-items: center; justify-content: center; position: relative; }
         
-        /* Faking the broken circular logo from Image 3 */
-        .logo-placeholder { position: absolute; left: 10px; width: 60px; height: 60px; background-color: white; border-radius: 50%; border: 1px solid #999; display: flex; align-items: flex-start; justify-content: flex-start; overflow: hidden; box-shadow: inset 0px 0px 5px rgba(0,0,0,0.2); }
-        .logo-placeholder img { width: 16px; height: 16px; margin: 5px; }
+        /* Pulling the uploaded logo.png */
+        .logo-img { position: absolute; left: 10px; width: 60px; height: 60px; background-color: white; border-radius: 50%; border: 1px solid #999; object-fit: contain; }
 
         .header-text { text-align: center; }
         .header-text h1 { margin: 0; font-size: 20px; font-weight: normal; }
@@ -46,41 +45,34 @@
         .border-box { border: 1px solid #000; padding: 2px; }
         .inner-border { border: 1px solid #000; padding: 15px; position: relative; }
         
-        /* Faking the broken logo and lines from Image 1 */
-        .broken-logo-text { font-size: 16px; color: #555; display: flex; align-items: center; gap: 5px; position: absolute; top: 15px; left: 15px; }
-        .broken-logo-text img { width: 14px; height: 14px; border: 1px solid #ccc; }
+        .sc-logo { position: absolute; top: 15px; left: 15px; width: 70px; height: 70px; }
         
-        .teal-line { border-top: 2px solid #287a85; }
-        .line-spacing { margin-top: 45px; margin-bottom: 25px; }
-        
-        .sc-header { text-align: center; margin-bottom: 10px; margin-top: 10px; }
+        .sc-header { text-align: center; margin-bottom: 10px; margin-top: 5px; }
         .sc-header h1 { margin: 0; font-size: 20px; color: #990000; font-weight: bold; }
         .sc-header h2 { margin: 5px 0 0 0; color: #990000; font-size: 14px; font-weight: bold; }
-        .statement-title { text-align: center; color: #0000ff; font-size: 14px; font-weight: bold; margin-bottom: 20px; text-decoration: underline; }
+        
+        .teal-line { border-top: 2px solid #287a85; }
+        .statement-title { text-align: center; color: #0000ff; font-size: 14px; font-weight: bold; margin: 15px 0; text-decoration: underline; }
 
-        /* Student Info Table - Matching the reddish brown color from Image 1 */
+        /* Match the exact reddish brown color */
         .info-grid { display: grid; grid-template-columns: 140px 1fr; row-gap: 6px; font-size: 12px; color: #a32616; font-weight: bold; }
         .info-grid span.val { color: #000; font-weight: normal; }
         .print-date { text-align: right; color: #a32616; font-size: 10px; font-weight: bold; margin-bottom: 5px; margin-top: -15px; }
 
-        /* Marks Tables */
         .marks-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 10px; font-family: "Arial", sans-serif; }
         .marks-table th, .marks-table td { border: 1px solid #000; padding: 6px 4px; text-align: center; }
         .marks-table th { font-weight: bold; }
         .marks-table td:nth-child(3) { text-align: left; }
 
-        /* Bottom Section */
         .passing-criteria, .abbreviations, .note-section { font-size: 10px; line-height: 1.4; margin-bottom: 8px; text-align: justify; }
         .bold-heading { font-weight: bold; color: #000; }
         
-        /* Signatures */
         .footer-grid { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 30px; font-size: 12px; font-weight: bold; }
         .signature-box { text-align: center; width: 250px; }
         
-        /* The custom scribble signature from Image 2 */
-        .signature-img { width: 100px; height: 40px; margin-bottom: 2px; }
+        /* Pulling the uploaded signature.png */
+        .signature-img { width: 140px; height: auto; margin-bottom: 2px; }
 
-        /* Scissor and Disclaimer */
         .scissor-line { text-align: center; margin: 20px 0; font-size: 14px; letter-spacing: 2px; }
         .disclaimer-box { border: 1px solid #000; padding: 15px; font-size: 10px; line-height: 1.4; text-align: justify; }
         .disclaimer-box span { font-weight: bold; }
@@ -94,9 +86,7 @@
 
     <div id="login-page">
         <div class="header-bg">
-            <div class="logo-placeholder">
-                <img src="invalid-link.jpg" alt="">
-            </div>
+            <img src="logo.png" class="logo-img" alt="DU Logo">
             <div class="header-text">
                 <h1>University of Delhi</h1>
                 <p>Manual Results (Semester/Annual Examination)</p>
@@ -144,27 +134,13 @@
                     <td class="label-cell">Date of Birth <span class="req">*</span></td>
                     <td>
                         DD <select id="dob_dd" class="dob-select">
-                            <option>DD</option>
-                            <option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option>
-                            <option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option>
-                            <option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
-                            <option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option>
-                            <option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
-                            <option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
-                            <option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
-                            <option value="29">29</option><option value="30">30</option><option value="31">31</option>
+                            <option>DD</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>
                         </select>
                         MM <select id="dob_mm" class="dob-select">
-                            <option>MM</option>
-                            <option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option>
-                            <option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option>
-                            <option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                            <option>MM</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
                         </select>
                         YYYY <select id="dob_yyyy" class="dob-select">
-                            <option>YYYY</option>
-                            <option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option>
-                            <option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option>
-                            <option value="2006">2006</option><option value="2007">2007</option>
+                            <option>YYYY</option><option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option>
                         </select>
                     </td>
                 </tr>
@@ -190,18 +166,15 @@
             <div class="border-box">
                 <div class="inner-border">
                     
-                    <div class="broken-logo-text">
-                        <img src="invalid-link.jpg" alt=""> DU Logo
-                    </div>
+                    <img src="logo.png" class="sc-logo" alt="DU Logo">
                     
                     <div class="sc-header">
                         <h1>University of Delhi</h1>
                         <h2>Semester Examination Nov-Dec 2025</h2>
                     </div>
                     
+                    <div class="teal-line" style="margin-top: 15px;"></div>
                     <div class="statement-title">Statement of Marks</div>
-                    
-                    <div class="teal-line line-spacing"></div>
                     <div class="teal-line" style="margin-bottom: 20px;"></div>
 
                     <div class="print-date">Date of Printing: 16 Apr 2026</div>
@@ -279,10 +252,7 @@
                     <div class="footer-grid">
                         <div>Date of Result Declaration: 15/04/2026</div>
                         <div class="signature-box">
-                            <svg class="signature-img" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M 10 25 Q 15 10 20 20 Q 25 30 35 25 Q 45 20 55 15 Q 65 30 75 25 Q 85 10 90 25" fill="none" stroke="#2c3e50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M 28 25 L 68 12" fill="none" stroke="#2c3e50" stroke-width="1.5" stroke-linecap="round"/>
-                            </svg><br>
+                            <img src="signature.png" class="signature-img" alt="Signature"><br>
                             (Prof. Gurpreet Singh Tuteja)<br>
                             Controller of Examination
                         </div>
