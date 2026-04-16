@@ -11,7 +11,7 @@
         /* ==================== LOGIN/SEARCH PAGE ==================== */
         .header-bg { background-color: #5c5cff; color: white; padding: 10px; display: flex; align-items: center; justify-content: center; position: relative; }
         
-        /* Official DU Logo Direct Link */
+        /* Pulling the uploaded logo.png */
         .logo-img { position: absolute; left: 10px; width: 60px; height: 60px; background-color: white; border-radius: 50%; border: 1px solid #999; object-fit: contain; }
 
         .header-text { text-align: center; }
@@ -70,8 +70,8 @@
         .footer-grid { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 30px; font-size: 12px; font-weight: bold; }
         .signature-box { text-align: center; width: 250px; }
         
-        /* Embedded Signature Styling */
-        .signature-svg { width: 120px; height: auto; margin-bottom: 5px; }
+        /* Pulling the uploaded signature.png */
+        .signature-img { width: 140px; height: auto; margin-bottom: 2px; }
 
         .scissor-line { text-align: center; margin: 20px 0; font-size: 14px; letter-spacing: 2px; }
         .disclaimer-box { border: 1px solid #000; padding: 15px; font-size: 10px; line-height: 1.4; text-align: justify; }
@@ -86,7 +86,7 @@
 
     <div id="login-page">
         <div class="header-bg">
-            <img src="https://upload.wikimedia.org/wikipedia/en/8/84/University_of_Delhi_seal.svg" class="logo-img" alt="DU Logo">
+            <img src="logo.png" class="logo-img" alt="DU Logo">
             <div class="header-text">
                 <h1>University of Delhi</h1>
                 <p>Manual Results (Semester/Annual Examination)</p>
@@ -166,7 +166,7 @@
             <div class="border-box">
                 <div class="inner-border">
                     
-                    <img src="https://upload.wikimedia.org/wikipedia/en/8/84/University_of_Delhi_seal.svg" class="sc-logo" alt="DU Logo">
+                    <img src="logo.png" class="sc-logo" alt="DU Logo">
                     
                     <div class="sc-header">
                         <h1>University of Delhi</h1>
@@ -252,13 +252,7 @@
                     <div class="footer-grid">
                         <div>Date of Result Declaration: 15/04/2026</div>
                         <div class="signature-box">
-                            <svg class="signature-svg" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M 120 100 C 60 110 50 20 80 15 C 110 10 120 40 100 80 C 80 120 60 100 70 70 C 80 40 100 60 120 50 C 130 45 140 30 150 40 C 160 50 150 70 160 80 C 170 90 180 70 190 60 C 200 50 210 20 220 30 C 230 40 220 90 230 100 C 240 110 260 80 270 70" fill="transparent" stroke="#000080" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M 80 60 L 150 30" fill="transparent" stroke="#000080" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M 190 40 L 250 30" fill="transparent" stroke="#000080" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M 50 110 L 280 60" fill="transparent" stroke="#000080" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <br>
+                            <img src="signature.png" class="signature-img" alt="Signature"><br>
                             (Prof. Gurpreet Singh Tuteja)<br>
                             Controller of Examination
                         </div>
